@@ -1,6 +1,6 @@
 import unittest
-from Logfunc import AndGate
-from Logfunc import OrGate
+from LogFunc import AndGate
+from LogFunc import OrGate
 
 
 class AndGateTest(unittest.TestCase):
