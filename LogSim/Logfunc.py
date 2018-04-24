@@ -58,7 +58,7 @@ class LogFunc:
         isinstance(value, bool)
         self.__Input1 = value
 
-    def __set_output(self, value):
+    def _set_output(self, value):
         """
         Sets the value of the output signal
         :param value: (bool) new value
@@ -118,9 +118,9 @@ class OrGate(LogFunc):
         :return: None
         """
         if True == self.Input0:
-            self.__set_output(True)
+            self._set_output(True)
         if True == self.Input1:
-            self.__set_output(True)
+            self._set_output(True)
 
 class AndGate(LogFunc):
 
@@ -131,4 +131,4 @@ class AndGate(LogFunc):
         """
         if True == self.Input0:
             if True == self.Input1:
-                self.__set_output(True)
+                self._set_output(True)
