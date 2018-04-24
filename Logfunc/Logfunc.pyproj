@@ -2,16 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>98ce689f-4cbd-48b4-b500-940a4b93a065</ProjectGuid>
+    <ProjectGuid>db8e1a21-a122-46aa-a9cd-c68443e1f970</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>
-    </StartupFile>
+    <StartupFile>Logfunc.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>LogSim</Name>
-    <RootNamespace>LogSim</RootNamespace>
+    <Name>Logfunc</Name>
+    <RootNamespace>Logfunc</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,12 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Logfunc.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LogfuncTest.py">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Logfunc.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
