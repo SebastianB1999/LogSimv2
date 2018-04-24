@@ -144,8 +144,7 @@ class XORGate(LogFunc):
 
 class NandGate(LogFunc):
     def execute(self):
-        self._set_output(True)
-        if True == self.Input0:
-            if True == self.Input1:
-                self._set_output(False)
+        if False == self.Input0:
+            if False == self.Input1:
+                self._set_output(True)
 
