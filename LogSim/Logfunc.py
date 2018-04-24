@@ -132,3 +132,20 @@ class AndGate(LogFunc):
         if True == self.Input0:
             if True == self.Input1:
                 self._set_output(True)
+
+class XORGate(LogFunc):
+    def execute(self):
+        if True == self.Input0:
+            if False == self.Input1:
+                self._set_output(True)
+        if True == self.Input1:
+            if False == self.Input0:
+                self._set_output(True)
+
+class NandGate(LogFunc):
+    def execute(self):
+        self._set_output(True)
+        if True == self.Input0:
+            if True == self.Input1:
+                self._set_output(False)
+
