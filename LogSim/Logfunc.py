@@ -147,6 +147,7 @@ class NandGate(LogFunc):
         self._set_output(True)
 
     def execute(self):
+        self._set_output(False)
         if False == self.Input0:
             if False == self.Input1:
                 self._set_output(True)
