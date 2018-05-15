@@ -11,7 +11,7 @@ class LogFunc:
         self.__Input1 = False
         self.__Output = False
         self.__Name = "LogFunc"
-        execute()
+        self.execute()
 
     def __get_input0(self):
         """
