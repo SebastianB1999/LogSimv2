@@ -12,15 +12,8 @@ class LogFunc(ABC):
         self.__Name = "LogFunc"
         self.__Anzahl = anzahl
         self.__Input = []
-        x=0
-        while x < anzahl:
-            self.set_input(x,False)
-            x=x+1
-
-
-
-       # for i in range(anzahl-1):
-        #    self.__Input[i] = False
+        for i in range(anzahl):
+            self.__Input.append(False)
         self.execute()
         
 
@@ -32,7 +25,7 @@ class LogFunc(ABC):
         Returns the value of the second input signal.
         :return: Input1
         """
-        return self.__Input1
+        return self.__Input
 
     def __get_output(self):
         """
@@ -82,6 +75,7 @@ class LogFunc(ABC):
     Name = property(__get_name, __set_name)
     Output = property(__get_output, None)
     Anzahl = property(__get_anzahl,None)
+    Input = property(__get_input,set_input)
 
     def __str__(self):
         """
@@ -127,7 +121,7 @@ class OrGate(LogFunc):
         """
         for i in self.Input:
             if i == True:
-                self.Output = True
+                self._set_output(True)
             
 
 class AndGate(LogFunc):
@@ -142,7 +136,7 @@ class AndGate(LogFunc):
             if i == False:
                 x = False
         if x == True:
-            Output = True
+            self._set_output(True)
 
         
 
@@ -153,7 +147,7 @@ class XORGate(LogFunc):
             if i == True:
                 y = y+1
         if y == 1:
-            Output == True
+            self._set_output(True)
 
 
 
@@ -164,6 +158,8 @@ class NandGate(LogFunc):
             if i == False:
                 x = False
         if x == True:
-            Output = False
+            self._set_output(False)
         else:
-            Output = True
+            self._set_output(True)
+
+a = OrGate(2)
