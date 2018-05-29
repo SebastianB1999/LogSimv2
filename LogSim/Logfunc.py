@@ -1,8 +1,9 @@
+from abc import ABC, abstractmethod
 __version__ = '3.0'
 __author__ = 'Sebastian Bensing (sebastian.bensing@students.tbs1.de)'
 
 
-class LogFunc:
+class LogFunc(ABC):
     """
     This class calculates the logical AND function.
     """
@@ -109,6 +110,10 @@ class LogFunc:
         print(format_string.format("Input1", str(self.Input1)))
         print(format_string.format("Output", str(self.Output)))
         print(first_last)
+
+    @abstractmethod
+    def execute(self):
+        pass
 
 
 class OrGate(LogFunc):
