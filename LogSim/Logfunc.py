@@ -12,8 +12,14 @@ class LogFunc(ABC):
         self.__Name = "LogFunc"
         self.__Anzahl = anzahl
         self.__Input = []
-        for i in range(anzahl-1):
-            self.__Input[i] = False
+        x=0
+        while x < Anzahl:
+            self.__Input[x] = False
+
+
+
+       # for i in range(anzahl-1):
+        #    self.__Input[i] = False
         self.execute()
         
 
