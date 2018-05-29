@@ -304,7 +304,7 @@ class XORGateTest(unittest.TestCase):
         a.set_input(1,False)
         a.set_input(2,True)
         a.execute()
-        self.assertEqual(True, a.Output, "Class XORGate Testcase 8 failed.")
+        self.assertEqual(False, a.Output, "Class XORGate Testcase 8 failed.")
 
     def testcase_09(self):
         a = XORGate(3)
