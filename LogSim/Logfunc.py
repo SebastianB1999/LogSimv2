@@ -13,8 +13,9 @@ class LogFunc(ABC):
         self.__Anzahl = anzahl
         self.__Input = []
         x=0
-        while x < Anzahl:
-            self.__Input[x] = False
+        while x < anzahl:
+            self.set_input(x,False)
+            x=x+1
 
 
 
