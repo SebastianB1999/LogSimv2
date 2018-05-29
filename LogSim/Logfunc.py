@@ -64,8 +64,9 @@ class LogFunc(ABC):
         :return: None
         """
         isinstance(value, bool)
-        for i in self.__Output:
-            i =value
+        x = self.__Ausgänge
+        for i in range(self.__Ausgänge):
+            self.__Output[i] = value
 
     def __set_name(self, value):
         """
@@ -166,5 +167,4 @@ class NandGate(LogFunc):
         else:
             self._set_output(True)
 
-a = OrGate(2)
-a.Input
+ 
