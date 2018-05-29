@@ -7,13 +7,16 @@ class LogFunc(ABC):
     """
     This class calculates the logical AND function.
     """
-    def __init__(self,anzahl):
-        self.__Output = False
+    def __init__(self,Eingänge,Ausgänge):
+        self.__Output = []
         self.__Name = "LogFunc"
-        self.__Anzahl = anzahl
+        self.__Anzahl = Eingänge
+        self.__Ausgänge = Ausgänge
         self.__Input = []
-        for i in range(anzahl):
+        for i in range(Eingänge):
             self.__Input.append(False)
+        for i in range(Ausgänge):
+            self.__Output.append(False)
         self.execute()
         
 
@@ -61,7 +64,8 @@ class LogFunc(ABC):
         :return: None
         """
         isinstance(value, bool)
-        self.__Output = value
+        for i in self.__Output:
+            i =value
 
     def __set_name(self, value):
         """
