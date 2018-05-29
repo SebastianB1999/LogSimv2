@@ -7,21 +7,18 @@ class LogFunc(ABC):
     """
     This class calculates the logical AND function.
     """
-    def __init__(self):
-        self.__Input0 = False
-        self.__Input1 = False
+    def __init__(self,anzahl):
+        self.__Input = []
         self.__Output = False
         self.__Name = "LogFunc"
+        self.__Anzahl = anzahl
         self.execute()
+        
 
-    def __get_input0(self):
-        """
-        Returns the value of the first input signal.
-        :return: Input0
-        """
-        return self.__Input0
+    def __get_anzahl(self):
+        return self.__Anzahl
 
-    def __get_input1(self):
+    def __get_input(self):
         """
         Returns the value of the second input signal.
         :return: Input1
@@ -42,23 +39,16 @@ class LogFunc(ABC):
         """
         return self.__Name
 
-    def __set_input0(self, value):
-        """
-        Sets the value of the first input signal
-        :param value: (bool) new value
-        :return: None
-        """
-        isinstance(value, bool)
-        self.__Input0 = value
 
-    def __set_input1(self, value):
+
+    def __set_input(self, value):
         """
         Sets the value of the second input signal
         :param value: (bool) new value
         :return: None
         """
         isinstance(value, bool)
-        self.__Input1 = value
+        self.__Input.append(value)
 
     def _set_output(self, value):
         """
@@ -79,9 +69,9 @@ class LogFunc(ABC):
         self.__Name = value
 
     Name = property(__get_name, __set_name)
-    Input0 = property(__get_input0, __set_input0)
-    Input1 = property(__get_input1, __set_input1)
+    Input = property(__get_input, __set_input)
     Output = property(__get_output, None)
+    Anzahl = property(__get_anzahl,None)
 
     def __str__(self):
         """
@@ -125,10 +115,10 @@ class OrGate(LogFunc):
         Computes the result of the logical connection of the two inputs.
         :return: None
         """
-        if True == self.Input0:
-            self._set_output(True)
-        if True == self.Input1:
-            self._set_output(True)
+        for i in self.Input:
+            if i == True:
+                self.Output = True
+            
 
 class AndGate(LogFunc):
 
@@ -137,23 +127,33 @@ class AndGate(LogFunc):
         Computes the result of the logical connection of the two inputs.
         :return: None
         """
-        if True == self.Input0:
-            if True == self.Input1:
-                self._set_output(True)
+        x = True
+        for i in self.Input:
+            if i == False:
+                x = False
+        if x == True:
+            Output = True
+
+        
 
 class XORGate(LogFunc):
     def execute(self):
-        if True == self.Input0:
-            if False == self.Input1:
-                self._set_output(True)
-        if True == self.Input1:
-            if False == self.Input0:
-                self._set_output(True)
+        y = 0
+        for i in self.Input:
+            if i == True:
+                y = y+1
+        if y == 1:
+            Output == True
+
+
 
 class NandGate(LogFunc):
     def execute(self):
-        self._set_output(False)
-        if False == self.Input0:
-            if False == self.Input1:
-                self._set_output(True)
-
+        x = True
+        for i in self.Input:
+            if i == False:
+                x = False
+        if x == True:
+            Output = False
+        else:
+            Output = True
