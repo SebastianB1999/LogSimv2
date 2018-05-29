@@ -113,7 +113,9 @@ class LogFunc(ABC):
 
     @abstractmethod
     def execute(self):
-        pass
+        raise NotImplementedError
+        #pass
+
 
 
 class OrGate(LogFunc):
