@@ -163,3 +163,4 @@ class NandGate(LogFunc):
             self._set_output(True)
 
 a = OrGate(2)
+a.Input

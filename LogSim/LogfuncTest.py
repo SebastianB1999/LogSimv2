@@ -10,6 +10,8 @@ class AndGateTest(unittest.TestCase):
     def testcase_00(self):
         a = AndGate(2)
         self.assertEqual(False, a.Output, "Class AndGate Testcase 0 failed.")
+        self.assertEqual(False, a.Input[0], "Class AndGate Testcase 0 failed.")
+        self.assertEqual(False, a.Input[0], "Class AndGate Testcase 0 failed.")
 
     def testcase_01(self):
         a = AndGate(2)
@@ -44,6 +46,8 @@ class OrGateTest(unittest.TestCase):
     def testcase_00(self):
         a = OrGate(2)
         self.assertEqual(False, a.Output, "Class OrGate Testcase 0 failed.")
+        self.assertEqual(False, a.Input[0], "Class OrGate Testcase 0 failed.")
+        self.assertEqual(False, a.Input[1], "Class OrGate Testcase 0 failed.")
 
     def testcase_01(self):
         a = OrGate(2)
@@ -77,6 +81,8 @@ class NandGateTest(unittest.TestCase):
     def testcase_00(self):
         a = NandGate(2)
         self.assertEqual(True, a.Output, "Class NandGate Testcase 0 failed.")
+        self.assertEqual(False, a.Input[0], "Class NandGate Testcase 0 failed.")
+        self.assertEqual(False, a.Input[1], "Class NandGate Testcase 0 failed.")
 
     def testcase_01(self):
         a = NandGate(2)
@@ -90,14 +96,14 @@ class NandGateTest(unittest.TestCase):
         a.set_input(0,False)
         a.set_input(1,True)
         a.execute()
-        self.assertEqual(False, a.Output, "Class NandGate Testcase 2 failed.")
+        self.assertEqual(True, a.Output, "Class NandGate Testcase 2 failed.")
 
     def testcase_03(self):
         a = NandGate(2)
         a.set_input(0,True)
         a.set_input(1,False)
         a.execute()
-        self.assertEqual(False, a.Output, "Class NandGate Testcase 3 failed.")
+        self.assertEqual(True, a.Output, "Class NandGate Testcase 3 failed.")
 
     def testcase_04(self):
         a = NandGate(2)
@@ -111,6 +117,8 @@ class XORGateTest(unittest.TestCase):
     def testcase_00(self):
         a = XORGate(2)
         self.assertEqual(False, a.Output, "Class XORGate Testcase 0 failed.")
+        self.assertEqual(False, a.Input[0], "Class XORGate Testcase 0 failed.")
+        self.assertEqual(False, a.Input[1], "Class XORGate Testcase 0 failed.")
 
     def testcase_01(self):
         a = XORGate(2)
