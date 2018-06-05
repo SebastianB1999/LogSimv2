@@ -364,10 +364,10 @@ class NorGateTest(unittest.TestCase):
     def testcase_05(self):
         a = NorGate(4)
         self.assertEqual(True, a.Output[0], "Class OrGate Testcase 5 failed.")
-        self.assertEqual(True, a.Input[0], "Class OrGate Testcase 5 failed.")
-        self.assertEqual(True, a.Input[1], "Class OrGate Testcase 5 failed.")
-        self.assertEqual(True, a.Input[2], "Class OrGate Testcase 5 failed.")
-        self.assertEqual(True, a.Input[3], "Class OrGate Testcase 5 failed.")
+        self.assertEqual(False, a.Input[0], "Class OrGate Testcase 5 failed.")
+        self.assertEqual(False, a.Input[1], "Class OrGate Testcase 5 failed.")
+        self.assertEqual(False, a.Input[2], "Class OrGate Testcase 5 failed.")
+        self.assertEqual(False, a.Input[3], "Class OrGate Testcase 5 failed.")
 
     def testcase_06(self):
         a = NorGate(4)

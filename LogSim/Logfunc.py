@@ -179,10 +179,11 @@ class NorGate(LogFunc):
         Computes the result of the logical connection of the two inputs.
         :return: None
         """
+        self._set_output(True)
         for i in self.Input:
             if i == True:
                 self._set_output(False)
-            else:
-                self._set_output(True)
+            
+                
             
  
