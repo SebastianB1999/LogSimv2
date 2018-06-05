@@ -24,24 +24,13 @@ class LogFunc(ABC):
         return self.__Anzahl
 
     def __get_input(self):
-        """
-        Returns the value of the second input signal.
-        :return: Input1
-        """
         return self.__Input
-        """
-        Returns the value of the name property.
-        :return: Name
+
 
     def __get_output(self):
-    #    """
-     #   Returns the value of the output signal.
-      #  :return: Output
-       # """
         return self.__Output
 
     def __get_name(self):
-      #  """
         return self.__Name
 
 
