@@ -330,8 +330,8 @@ class NorGateTest(unittest.TestCase):
     def testcase_00(self):
         a = NorGate(2)
         self.assertEqual(True, a.Output[0], "Class OrGate Testcase 0 failed.")
-        self.assertEqual(True, a.Input[0], "Class OrGate Testcase 0 failed.")
-        self.assertEqual(True, a.Input[1], "Class OrGate Testcase 0 failed.")
+        self.assertEqual(False, a.Input[0], "Class OrGate Testcase 0 failed.")
+        self.assertEqual(False, a.Input[1], "Class OrGate Testcase 0 failed.")
 
     def testcase_01(self):
         a = NorGate(2)
