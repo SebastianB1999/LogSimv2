@@ -29,19 +29,19 @@ class LogFunc(ABC):
         :return: Input1
         """
         return self.__Input
-
-    def __get_output(self):
-        """
-        Returns the value of the output signal.
-        :return: Output
-        """
-        return self.__Output
-
-    def __get_name(self):
         """
         Returns the value of the name property.
         :return: Name
-        """
+
+    def __get_output(self):
+    #    """
+     #   Returns the value of the output signal.
+      #  :return: Output
+       # """
+        return self.__Output
+
+    def __get_name(self):
+      #  """
         return self.__Name
 
 
@@ -118,6 +118,8 @@ class LogFunc(ABC):
 
 
 class OrGate(LogFunc):
+    def __init__(self, Eing):
+        return super().__init__(Eing, 1)
 
     def execute(self):
         """
@@ -130,6 +132,8 @@ class OrGate(LogFunc):
             
 
 class AndGate(LogFunc):
+    def __init__(self, Eing):
+        return super().__init__(Eing, 1)
 
     def execute(self):
         """
@@ -146,6 +150,9 @@ class AndGate(LogFunc):
         
 
 class XORGate(LogFunc):
+    def __init__(self, Eing):
+        return super().__init__(Eing, 1)
+
     def execute(self):# wenn eine ungrade anzahl an true gibt ist das ergebnis true
         y = 0
         for i in self.Input:
@@ -159,6 +166,9 @@ class XORGate(LogFunc):
 
 
 class NandGate(LogFunc):
+    def __init__(self, Eing):
+        return super().__init__(Eing, 1)
+
     def execute(self):
         x = True
         for i in self.Input:
