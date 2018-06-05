@@ -170,4 +170,19 @@ class NandGate(LogFunc):
 
 # Nor muss noch implementiert werden
 
+class NorGate(LogFunc):
+    def __init__(self, Eing):
+        return super().__init__(Eing, 1)
+
+    def execute(self):
+        """
+        Computes the result of the logical connection of the two inputs.
+        :return: None
+        """
+        for i in self.Input:
+            if i == True:
+                self._set_output(False)
+            else:
+                self._set_output(True)
+            
  
