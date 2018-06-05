@@ -146,12 +146,14 @@ class AndGate(LogFunc):
         
 
 class XORGate(LogFunc):
-    def execute(self):
+    def execute(self):# wenn eine ungrade anzahl an true gibt ist das ergebnis true
         y = 0
         for i in self.Input:
             if i == True:
                 y = y+1
         if y == 1:
+            self._set_output(True)
+        if y%2 ==1:
             self._set_output(True)
 
 
@@ -166,5 +168,7 @@ class NandGate(LogFunc):
             self._set_output(False)
         else:
             self._set_output(True)
+
+# Nor muss noch implementiert werden
 
  
