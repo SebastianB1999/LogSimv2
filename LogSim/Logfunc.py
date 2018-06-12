@@ -187,46 +187,49 @@ class NorGate(LogFunc):
 
 class HalfAdder(LogFunc):
     def __init__(self):
+        self.__andgate = AndGate(2)
+        self.__xorgate = XORGate(2)
         return super().__init__(2, 2)
     
     def execute(self):
-       andgate = AndGate(2)
-       andgate.set_input(0,self.Input[0])
-       andgate.set_input(1,self.Input[1])
-       andgate.execute()
+       
+       self.__andgate.set_input(0,self.Input[0])
+       self.__andgate.set_input(1,self.Input[1])
+       self.__andgate.execute()
        self._set_output(1,andgate.Output[0])
        
-       xorgate = XORGate(2)
-       xorgate.set_input(0,self.Input[0])
-       xorgate.set_input(1,self.Input[1])
-       xorgate.execute()
-       self._set_output(0,xorgate.Output[0])
+       
+       self.__xorgate.set_input(0,self.Input[0])
+       self.__xorgate.set_input(1,self.Input[1])
+       self.__xorgate.execute()
+       self._set_output(0,self.__xorgate.Output[0])
        
 class Fulladder(LogFunc):
     def __init__(self):
+        self.__halfadder1 = HalfAdder()
+        self.__orgate = OrGate(2)
         return super().__init__(3, 2)
 
     def execute(self):
-        halfadder1 = HalfAdder()
-        halfadder1.set_input(0,self.Input[0])
-        halfadder1.set_input(1,self.Input[1])
-        halfadder1.execute()
-        v1 = halfadder1.Output[0]
-        v2 = halfadder1.Output[1]
+        
+        self.__halfadder1.set_input(0,self.Input[0])
+        self.__halfadder1.set_input(1,self.Input[1])
+        self.__halfadder1.execute()
+        v1 = self.__halfadder1.Output[0]
+        v2 = self.__halfadder1.Output[1]
 
-        halfadder2 = HalfAdder()
-        halfadder2.set_input(0,v1)
-        halfadder2.set_input(1,self.Input[2])
-        halfadder2.execute()
-        v3 = halfadder2.Output[0]
-        v4 = halfadder2.Output[1]
+        
+        self.__halfadder1.set_input(0,v1)
+        self.__halfadder1.set_input(1,self.Input[2])
+        self.__halfadder1.execute()
+        v3 = self.__halfadder1.Output[0]
+        v4 = self.__halfadder1.Output[1]
 
         self._set_output(0,v3)
 
-        orgate = OrGate(2)
-        orgate.set_input(0,v2)
-        orgate.set_input(1,v4)
-        orgate.execute()
+        self.__orgate.set_input(0,v2)
+        self.__orgate.set_input(1,v4)
+        self.__orgate.execute()
 
         self._set_output(1,orgate.Output[0])
             
