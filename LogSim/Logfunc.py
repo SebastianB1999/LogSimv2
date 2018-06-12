@@ -196,7 +196,7 @@ class HalfAdder(LogFunc):
        self.__andgate.set_input(0,self.Input[0])
        self.__andgate.set_input(1,self.Input[1])
        self.__andgate.execute()
-       self._set_output(1,andgate.Output[0])
+       self._set_output(1,self.__andgate.Output[0])
        
        
        self.__xorgate.set_input(0,self.Input[0])
@@ -207,6 +207,7 @@ class HalfAdder(LogFunc):
 class Fulladder(LogFunc):
     def __init__(self):
         self.__halfadder1 = HalfAdder()
+        self.__halfadder2 = HalfAdder()
         self.__orgate = OrGate(2)
         return super().__init__(3, 2)
 
@@ -219,11 +220,11 @@ class Fulladder(LogFunc):
         v2 = self.__halfadder1.Output[1]
 
         
-        self.__halfadder1.set_input(0,v1)
-        self.__halfadder1.set_input(1,self.Input[2])
-        self.__halfadder1.execute()
-        v3 = self.__halfadder1.Output[0]
-        v4 = self.__halfadder1.Output[1]
+        self.__halfadder2.set_input(0,v1)
+        self.__halfadder2.set_input(1,self.Input[2])
+        self.__halfadder2.execute()
+        v3 = self.__halfadder2.Output[0]
+        v4 = self.__halfadder2.Output[1]
 
         self._set_output(0,v3)
 
@@ -231,6 +232,6 @@ class Fulladder(LogFunc):
         self.__orgate.set_input(1,v4)
         self.__orgate.execute()
 
-        self._set_output(1,orgate.Output[0])
+        self._set_output(1,self.__orgate.Output[0])
             
  
