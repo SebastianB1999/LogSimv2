@@ -5,6 +5,7 @@ from Logfunc import NandGate
 from Logfunc import XORGate
 from Logfunc import NorGate
 from Logfunc import HalfAdder
+from Logfunc import Fulladder
 
 
 class AndGateTest(unittest.TestCase):
@@ -447,6 +448,95 @@ class HalfAdderTest(unittest.TestCase):
         a.execute()
         self.assertEqual(False, a.Output[0], "Class HalfAdder Testcase 2 failed.")
         self.assertEqual(True, a.Output[1], "Class HalfAdder Testcase 2 failed.")
+
+
+class FullAdderTest(unittest.TestCase):
+    
+    def testcase_00(self):
+        a = Fulladder()
+        self.assertEqual(False, a.Output[0], "Class Fulladder Testcase 0 failed.")
+        self.assertEqual(False, a.Output[1], "Class Fulladder Testcase 0 failed.")
+        self.assertEqual(False, a.Input[0], "Class Fulladder Testcase 0 failed.")
+        self.assertEqual(False, a.Input[1], "Class Fulladder Testcase 0 failed.")
+        self.assertEqual(False, a.Input[2], "Class Fulladder Testcase 0 failed.")
+
+    def testcase_01(self):
+        a = Fulladder()
+        a.set_input(0,False)
+        a.set_input(1,False)
+        a.set_input(2,False)
+        a.execute()
+        self.assertEqual(False, a.Output[0], "Class FullAdder Testcase 1 failed.")
+        self.assertEqual(False, a.Output[1], "Class FullAdder Testcase 1 failed.")
+        
+
+    def testcase_02(self):
+        a = Fulladder()
+        a.set_input(0,False)
+        a.set_input(1,False)
+        a.set_input(2,True)
+        a.execute()
+        self.assertEqual(True, a.Output[0], "Class FullAdder Testcase 2 failed.")
+        self.assertEqual(False, a.Output[1], "Class FullAdder Testcase 2 failed.")
+
+    def testcase_03(self):
+        a = Fulladder()
+        a.set_input(0,False)
+        a.set_input(1,True)
+        a.set_input(2,False)
+        a.execute()
+        self.assertEqual(True, a.Output[0], "Class FullAdder Testcase 3 failed.")
+        self.assertEqual(False, a.Output[1], "Class FullAdder Testcase 3 failed.")
+       
+    def testcase_04(self):
+        a = Fulladder()
+        a.set_input(0,False)
+        a.set_input(1,True)
+        a.set_input(2,True)
+        a.execute()
+        self.assertEqual(False, a.Output[0], "Class FullAdder Testcase 4 failed.")
+        self.assertEqual(True, a.Output[1], "Class FullAdder Testcase 4 failed.")
+
+    def testcase_05(self):
+        a = Fulladder()
+        a.set_input(0,True)
+        a.set_input(1,False)
+        a.set_input(2,False)
+        a.execute()
+        self.assertEqual(True, a.Output[0], "Class FullAdder Testcase 5 failed.")
+        self.assertEqual(False, a.Output[1], "Class FullAdder Testcase 5 failed.")
+
+    def testcase_06(self):
+        a = Fulladder()
+        a.set_input(0,True)
+        a.set_input(1,False)
+        a.set_input(2,True)
+        a.execute()
+        self.assertEqual(False, a.Output[0], "Class FullAdder Testcase 6 failed.")
+        self.assertEqual(True, a.Output[1], "Class FullAdder Testcase 6 failed.")
+
+
+    def testcase_07(self):
+        a = Fulladder()
+        a.set_input(0,True)
+        a.set_input(1,True)
+        a.set_input(2,False)
+        a.execute()
+        self.assertEqual(False, a.Output[0], "Class FullAdder Testcase 7 failed.")
+        self.assertEqual(True, a.Output[1], "Class FullAdder Testcase 7 failed.")
+
+    def testcase_08(self):
+        a = Fulladder()
+        a.set_input(0,True)
+        a.set_input(1,True)
+        a.set_input(2,True)
+        a.execute()
+        self.assertEqual(True, a.Output[0], "Class FullAdder Testcase 8 failed.")
+        self.assertEqual(True, a.Output[1], "Class FullAdder Testcase 8 failed.")
+
+
+
+
 
 
 if __name__ == "__main__":
