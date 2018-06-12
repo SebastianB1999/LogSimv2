@@ -6,6 +6,7 @@ from Logfunc import XORGate
 from Logfunc import NorGate
 from Logfunc import HalfAdder
 from Logfunc import Fulladder
+from Logfunc import eightbitadder
 
 
 class AndGateTest(unittest.TestCase):
@@ -533,6 +534,34 @@ class FullAdderTest(unittest.TestCase):
         a.execute()
         self.assertEqual(True, a.Output[0], "Class FullAdder Testcase 8 failed.")
         self.assertEqual(True, a.Output[1], "Class FullAdder Testcase 8 failed.")
+
+class eightbitadderTest(unittest.TestCase):
+    
+    def testcase_01(self): 
+        a = eightbitadder()
+        testdatas = [
+            [False, False, False, False, False],
+            [False, False, True, True, False],
+            [False, True, False, True, False],
+            [False, True, True, False, True],
+            [True, False, False, True, False],
+            [True, False, True, False, True],
+            [True, True, False, False, True],
+            [True, True, True, True, True]
+        ]
+        for testdata in testdatas:
+            for i in range(0, 3):
+                a.set_input(i, testdata[i])
+            a.execute()
+            self.assertEqual(testdata[3], a.Output(0), "Class eightbitadder Testcase 1 failed.")
+            self.assertEqual(testdata[4], a.Output(1), "Class eightbitadder Testcase 1 failed.")
+            self.assertEqual(testdata[4], a.Output(2), "Class eightbitadder Testcase 1 failed.")
+            self.assertEqual(testdata[4], a.Output(3), "Class eightbitadder Testcase 1 failed.")
+            self.assertEqual(testdata[4], a.Output(4), "Class eightbitadder Testcase 1 failed.")
+            self.assertEqual(testdata[4], a.Output(5), "Class eightbitadder Testcase 1 failed.")
+            self.assertEqual(testdata[4], a.Output(6), "Class eightbitadder Testcase 1 failed.")
+            self.assertEqual(testdata[4], a.Output(7), "Class eightbitadder Testcase 1 failed.")
+            self.assertEqual(testdata[4], a.Output(8), "Class eightbitadder Testcase 1 failed.")
 
 
 
