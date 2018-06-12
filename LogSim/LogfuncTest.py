@@ -404,7 +404,7 @@ class NorGateTest(unittest.TestCase):
         a.set_input(2,False)
         a.set_input(3,True)
         a.execute()
-        self.assertEqual(False, a.Output[0], "Class OrGate Testcase 9 failed.")
+        self.assertEqual(True, a.Output[0], "Class OrGate Testcase 9 failed.")
 
 
 if __name__ == "__main__":

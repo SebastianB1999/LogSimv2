@@ -46,16 +46,16 @@ class LogFunc(ABC):
         if position >= 0:
             self.__Input[position] = value
 
-    def _set_output(self, value):
+    def _set_output(self,position, value):
         """
         Sets the value of the output signal
         :param value: (bool) new value
         :return: None
         """
         isinstance(value, bool)
-        x = self.__Ausgänge
-        for i in range(self.__Ausgänge):
-            self.__Output[i] = value
+        isinstance(position,int)
+        if position >= 0:
+            self.__Output[position] = value
 
     def __set_name(self, value):
         """
@@ -117,7 +117,7 @@ class OrGate(LogFunc):
         """
         for i in self.Input:
             if i == True:
-                self._set_output(True)
+                self._set_output(0,True)
             
 
 class AndGate(LogFunc):
@@ -134,7 +134,7 @@ class AndGate(LogFunc):
             if i == False:
                 x = False
         if x == True:
-            self._set_output(True)
+            self._set_output(0,True)
 
         
 
@@ -148,9 +148,9 @@ class XORGate(LogFunc):
             if i == True:
                 y = y+1
         if y == 1:
-            self._set_output(True)
+            self._set_output(0,True)
         if y%2 ==1:
-            self._set_output(True)
+            self._set_output(0,True)
 
 
 
@@ -164,9 +164,9 @@ class NandGate(LogFunc):
             if i == False:
                 x = False
         if x == True:
-            self._set_output(False)
+            self._set_output(0,False)
         else:
-            self._set_output(True)
+            self._set_output(0,True)
 
 # Nor muss noch implementiert werden
 
@@ -179,11 +179,30 @@ class NorGate(LogFunc):
         Computes the result of the logical connection of the two inputs.
         :return: None
         """
-        self._set_output(True)
+        self._set_output(0,True)
         for i in self.Input:
             if i == True:
-                self._set_output(False)
+                self._set_output(0,False)
             
+
+class HalfAdder(LogFunc):
+    def __init__(self):
+        return super().__init__(2, 2)
+    
+    def execute():
+       andgate = AndGate(2)
+       andgate.set_input(self.Input[0])
+       andgate.set_input(self.Input[1])
+       andgate.execute
+       self._set_output(1,andgate.Output)
+       
+       xorgate = XORGate(2)
+       xorgate.set_input(self.Input[0])
+       xorgate.set_input(self.Input[1])
+       xorgate.execute
+       self._set_output(1,xorgate.Output)
+       
+
                 
             
  
