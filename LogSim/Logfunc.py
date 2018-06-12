@@ -237,7 +237,34 @@ class Fulladder(LogFunc):
         self._set_output(1,v5)
 
 class eightbitadder(LogFunc):
-    def __init__(self, Eing, Ausg):
-        return super().__init__(Eing, Ausg)
-            
+    def __init__(self):
+        self.__halfadder = HalfAdder()
+        self.__fulladder = Fulladder()
+        return super().__init__(2, 9)
+
+    def __init__(self,bits):
+        self.__halfadder = HalfAdder()
+        self.__fulladder = Fulladder()
+        return super().__init__(2, bits+1)
+
+    def execute(self):
+        
+        
+        self.__halfadder.set_input(0,self.Input[0][0])
+        self.__halfadder.set_input(1,self.Input[1][0])
+        self.__halfadder.execute()
+        v1 = self.__halfadder.Output[0]
+        v2 = self.__halfadder.Output[1]
+        self._set_output(0,v1)
+        x=1
+        while x < len(self.Input[0]):
+            self.__fulladder.set_input(0,self.Input[0][x])
+            self.__fulladder.set_input(1,self.Input[1][x])
+            self.__fulladder.set_input(0,v2)
+            self.__fulladder.execute()
+            v3 = self.__fulladder.Output[0]
+            v2 = self.__fulladder.Output[1]
+            self._set_output(x,v3)
+            x = x + 1
+
  
