@@ -202,7 +202,9 @@ class HalfAdder(LogFunc):
        xorgate.execute()
        self._set_output(0,xorgate.Output[0])
        
-
+class fulladder(LogFunc):
+    def __init__(self):
+        return super().__init__(Eing, Ausg)
                 
             
  
