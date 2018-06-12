@@ -189,18 +189,18 @@ class HalfAdder(LogFunc):
     def __init__(self):
         return super().__init__(2, 2)
     
-    def execute():
+    def execute(self):
        andgate = AndGate(2)
-       andgate.set_input(self.Input[0])
-       andgate.set_input(self.Input[1])
-       andgate.execute
-       self._set_output(1,andgate.Output)
+       andgate.set_input(0,self.Input[0])
+       andgate.set_input(1,self.Input[1])
+       andgate.execute()
+       self._set_output(1,andgate.Output[0])
        
        xorgate = XORGate(2)
-       xorgate.set_input(self.Input[0])
-       xorgate.set_input(self.Input[1])
-       xorgate.execute
-       self._set_output(1,xorgate.Output)
+       xorgate.set_input(0,self.Input[0])
+       xorgate.set_input(1,self.Input[1])
+       xorgate.execute()
+       self._set_output(0,xorgate.Output[0])
        
 
                 
