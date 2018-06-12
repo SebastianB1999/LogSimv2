@@ -1,4 +1,6 @@
 from abc import ABC, abstractmethod
+import copy
+#   from copy import deepcopy
 __version__ = '3.0'
 __author__ = 'Sebastian Bensing (sebastian.bensing@students.tbs1.de)'
 
@@ -144,6 +146,7 @@ class XORGate(LogFunc):
 
     def execute(self):# wenn eine ungrade anzahl an true gibt ist das ergebnis true
         y = 0
+        self._set_output(0,False)
         for i in self.Input:
             if i == True:
                 y = y+1
@@ -207,7 +210,7 @@ class HalfAdder(LogFunc):
 class Fulladder(LogFunc):
     def __init__(self):
         self.__halfadder1 = HalfAdder()
-        self.__halfadder2 = HalfAdder()
+        #self.__halfadder2 = HalfAdder()
         self.__orgate = OrGate(2)
         return super().__init__(3, 2)
 
@@ -218,20 +221,23 @@ class Fulladder(LogFunc):
         self.__halfadder1.execute()
         v1 = self.__halfadder1.Output[0]
         v2 = self.__halfadder1.Output[1]
-
         
-        self.__halfadder2.set_input(0,v1)
-        self.__halfadder2.set_input(1,self.Input[2])
-        self.__halfadder2.execute()
-        v3 = self.__halfadder2.Output[0]
-        v4 = self.__halfadder2.Output[1]
-
+        self.__halfadder1.set_input(0,v1)
+        self.__halfadder1.set_input(1,self.Input[2])
+        self.__halfadder1.execute()
+        v3 = self.__halfadder1.Output[0]
+        v4 = self.__halfadder1.Output[1]
+        
         self._set_output(0,v3)
 
         self.__orgate.set_input(0,v2)
         self.__orgate.set_input(1,v4)
         self.__orgate.execute()
+        v5 = self.__orgate.Output[0]
+        self._set_output(1,v5)
 
-        self._set_output(1,self.__orgate.Output[0])
+class eightbitadder(LogFunc):
+    def __init__(self, Eing, Ausg):
+        return super().__init__(Eing, Ausg)
             
  
