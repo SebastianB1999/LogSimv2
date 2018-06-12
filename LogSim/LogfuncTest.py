@@ -4,6 +4,7 @@ from Logfunc import OrGate
 from Logfunc import NandGate
 from Logfunc import XORGate
 from Logfunc import NorGate
+from Logfunc import HalfAdder
 
 
 class AndGateTest(unittest.TestCase):
@@ -405,6 +406,47 @@ class NorGateTest(unittest.TestCase):
         a.set_input(3,True)
         a.execute()
         self.assertEqual(True, a.Output[0], "Class OrGate Testcase 9 failed.")
+
+class HalfAdderTest(unittest.TestCase):
+    
+    def testcase_00(self):
+        a = HalfAdder()
+        self.assertEqual(False, a.Output[0], "Class HalfAdder Testcase 0 failed.")
+        self.assertEqual(False, a.Output[1], "Class HalfAdder Testcase 0 failed.")
+        self.assertEqual(False, a.Input[0], "Class HalfAdder Testcase 0 failed.")
+        self.assertEqual(False, a.Input[1], "Class HalfAdder Testcase 0 failed.")
+
+    def testcase_01(self):
+        a = HalfAdder()
+        a.set_input(0,False)
+        a.set_input(1,False)
+        a.execute()
+        self.assertEqual(False, a.Output[0], "Class HalfAdder Testcase 1 failed.")
+        self.assertEqual(False, a.Output[1], "Class HalfAdder Testcase 1 failed.")
+
+    def testcase_02(self):
+        a = HalfAdder()
+        a.set_input(0,False)
+        a.set_input(1,True)
+        a.execute()
+        self.assertEqual(True, a.Output[0], "Class HalfAdder Testcase 2 failed.")
+        self.assertEqual(False, a.Output[1], "Class HalfAdder Testcase 2 failed.")
+
+    def testcase_03(self):
+        a = HalfAdder()
+        a.set_input(0,True)
+        a.set_input(1,False)
+        a.execute()
+        self.assertEqual(True, a.Output[0], "Class HalfAdder Testcase 3 failed.")
+        self.assertEqual(False, a.Output[1], "Class HalfAdder Testcase 3 failed.")
+
+    def testcase_04(self):
+        a = HalfAdder()
+        a.set_input(0,True)
+        a.set_input(1,True)
+        a.execute()
+        self.assertEqual(False, a.Output[0], "Class HalfAdder Testcase 2 failed.")
+        self.assertEqual(True, a.Output[1], "Class HalfAdder Testcase 2 failed.")
 
 
 if __name__ == "__main__":
