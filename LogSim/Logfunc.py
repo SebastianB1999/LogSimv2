@@ -204,7 +204,30 @@ class HalfAdder(LogFunc):
        
 class fulladder(LogFunc):
     def __init__(self):
-        return super().__init__(Eing, Ausg)
-                
+        return super().__init__(3, 2)
+
+    def execute(self):
+        halfadder1 = HalfAdder()
+        halfadder1.set_input(0,self.Input[0])
+        halfadder1.set_input(1,self.Input[1])
+        halfadder1.execute()
+        v1 = halfadder1.Output[0]
+        v2 = halfadder1.Output[1]
+
+        halfadder2 = HalfAdder()
+        halfadder2.set_input(0,v1)
+        halfadder2.set_input(1,self.Input[2])
+        halfadder2.execute()
+        v3 = halfadder2.Output[0]
+        v4 = halfadder2.Output[1]
+
+        self._set_output(0,v3)
+
+        orgate = OrGate(2)
+        orgate.set_input(0,v2)
+        orgate.set_input(1,v4)
+        orgate.execute()
+
+        self._set_output(1,orgate.Output[0])
             
  
