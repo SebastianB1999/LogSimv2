@@ -540,29 +540,38 @@ class eightbitadderTest(unittest.TestCase):
     def testcase_01(self): 
         a = eightbitadder()
         testdatas = [
-            [False, False, False, False, False],
-            [False, False, True, True, False],
-            [False, True, False, True, False],
-            [False, True, True, False, True],
-            [True, False, False, True, False],
-            [True, False, True, False, True],
-            [True, True, False, False, True],
-            [True, True, True, True, True]
+            [False, False, False, False, False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False],
+            [True, False, False, False, False,False,False,False,False,False,False,False,False,False,False,False,True,False,False,False,False,False,False,False,False],
+            [True, False, True, False, False,False,False,False,False,False,False,False,False,False,False,True,True,False,True,False,False,False,False,True,False],
+            [True, False, False, False, False,False,False,False,True,False,False,False,False,False,False,False,False,True,False,False,False,False,False,False,False],
+            [True, False, False, True, False,False,False,False,     True,False,False,True,False,False,False,False,      False,True,False,False,True,False,False,False,False],
+            [True, False, False, False, False,False,False,False,False,False,False,False,True,False,False,False,True,False,False,False,True,False,False,False,False],
+            [True, True, True, True, True,True,True,True,False,False,False,False,False,False,False,True,True,True,True,True,True,True,True,False,True],
+            [True, True, True, True, True,True,True,True,True,True,True,True,True,True,True,True,False,True,True,True,True,True,True,True,True],
         ]
+        zähler = 1
         for testdata in testdatas:
-            for i in range(0, 3):
-                a.set_input(i, testdata[i])
-            a.execute()
-            self.assertEqual(testdata[3], a.Output(0), "Class eightbitadder Testcase 1 failed.")
-            self.assertEqual(testdata[4], a.Output(1), "Class eightbitadder Testcase 1 failed.")
-            self.assertEqual(testdata[4], a.Output(2), "Class eightbitadder Testcase 1 failed.")
-            self.assertEqual(testdata[4], a.Output(3), "Class eightbitadder Testcase 1 failed.")
-            self.assertEqual(testdata[4], a.Output(4), "Class eightbitadder Testcase 1 failed.")
-            self.assertEqual(testdata[4], a.Output(5), "Class eightbitadder Testcase 1 failed.")
-            self.assertEqual(testdata[4], a.Output(6), "Class eightbitadder Testcase 1 failed.")
-            self.assertEqual(testdata[4], a.Output(7), "Class eightbitadder Testcase 1 failed.")
-            self.assertEqual(testdata[4], a.Output(8), "Class eightbitadder Testcase 1 failed.")
+            
+            v1 = []
+            for i in range(0, 8):
+                v1.append(testdata[i])
+            a.set_input(0,v1)
+            v2 = []
+            for i in range(8, 16):
+                v2.append(testdata[i])
+            a.set_input(1,v2)
 
+            a.execute()
+            self.assertEqual(testdata[16], a.Output[0], "Class eightbitadder Testcase 1 failed. Test: "+str(zähler))
+            self.assertEqual(testdata[17], a.Output[1], "Class eightbitadder Testcase 1 failed. Test: "+str(zähler))
+            self.assertEqual(testdata[18], a.Output[2], "Class eightbitadder Testcase 1 failed. Test: "+str(zähler))
+            self.assertEqual(testdata[19], a.Output[3], "Class eightbitadder Testcase 1 failed. Test: "+str(zähler))
+            self.assertEqual(testdata[20], a.Output[4], "Class eightbitadder Testcase 1 failed. Test: "+str(zähler))
+            self.assertEqual(testdata[21], a.Output[5], "Class eightbitadder Testcase 1 failed. Test: "+str(zähler))
+            self.assertEqual(testdata[22], a.Output[6], "Class eightbitadder Testcase 1 failed. Test: "+str(zähler))
+            self.assertEqual(testdata[23], a.Output[7], "Class eightbitadder Testcase 1 failed. Test: "+str(zähler))
+            self.assertEqual(testdata[24], a.Output[8], "Class eightbitadder Testcase 1 failed. Test: "+str(zähler))
+            zähler = zähler +1
 
 
 

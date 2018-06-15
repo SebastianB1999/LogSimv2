@@ -9,14 +9,22 @@ class LogFunc(ABC):
     """
     This class calculates the logical AND function.
     """
-    def __init__(self,Eingänge,Ausgänge):
+    def __init__(self,Eingänge,Ausgänge,bits=None):
         self.__Output = []
         self.__Name = "LogFunc"
         self.__Anzahl = Eingänge
         self.__Ausgänge = Ausgänge
         self.__Input = []
-        for i in range(Eingänge):
-            self.__Input.append(False)
+        if bits is None:
+            for i in range(Eingänge):
+                self.__Input.append(False)
+        else:
+            for i in range(Eingänge):
+                v1 = []
+                for x in range(bits):
+                    v1.append(False)
+                self.__Input.append(v1)
+
         for i in range(Ausgänge):
             self.__Output.append(False)
         self.execute()
@@ -117,6 +125,7 @@ class OrGate(LogFunc):
         Computes the result of the logical connection of the two inputs.
         :return: None
         """
+        self._set_output(0,False)
         for i in self.Input:
             if i == True:
                 self._set_output(0,True)
@@ -131,6 +140,7 @@ class AndGate(LogFunc):
         Computes the result of the logical connection of the two inputs.
         :return: None
         """
+        self._set_output(0,False)
         x = True
         for i in self.Input:
             if i == False:
@@ -240,12 +250,12 @@ class eightbitadder(LogFunc):
     def __init__(self):
         self.__halfadder = HalfAdder()
         self.__fulladder = Fulladder()
-        return super().__init__(2, 9)
+        return super().__init__(2,9,8)
 
-    def __init__(self,bits):
-        self.__halfadder = HalfAdder()
-        self.__fulladder = Fulladder()
-        return super().__init__(2, bits+1)
+ #   def __init__(self,bits):
+  #      self.__halfadder = HalfAdder()
+   #     self.__fulladder = Fulladder()
+    #    return super().__init__(2,bits, bits+1)
 
     def execute(self):
         
@@ -260,11 +270,13 @@ class eightbitadder(LogFunc):
         while x < len(self.Input[0]):
             self.__fulladder.set_input(0,self.Input[0][x])
             self.__fulladder.set_input(1,self.Input[1][x])
-            self.__fulladder.set_input(0,v2)
+            self.__fulladder.set_input(2,v2)
             self.__fulladder.execute()
             v3 = self.__fulladder.Output[0]
             v2 = self.__fulladder.Output[1]
             self._set_output(x,v3)
             x = x + 1
+        self._set_output(x,v2)
+        v=0
 
  
