@@ -11,7 +11,7 @@ class LogFunc(ABC):
     """
     def __init__(self,Eingänge,Ausgänge,bits=None):
         self.__Output = []
-        self.__Name = "LogFunc"
+        self.__Name = type(self).__name__
         self.__Anzahl = Eingänge
         self.__Ausgänge = Ausgänge
         self.__Input = []
@@ -108,6 +108,7 @@ class OrGate(LogFunc):
     def __init__(self, Eing):
         return super().__init__(Eing, 1)
 
+
     def execute(self):
     # Calculation of the output based on the inputs
         self._set_output(0,False)
@@ -120,6 +121,7 @@ class AndGate(LogFunc):
     # Class calculates the And Gate
     def __init__(self, Eing):
         return super().__init__(Eing, 1)
+        
 
     def execute(self):
         # Calculation of the output based on the inputs
@@ -137,6 +139,7 @@ class XORGate(LogFunc):
     # Class calculates the XOr Gate
     def __init__(self, Eing):
         return super().__init__(Eing, 1)
+        
 
     def execute(self):
         # Calculation of the output based on the inputs
@@ -156,6 +159,7 @@ class NandGate(LogFunc):
     # Class calculates the NAnd Gate
     def __init__(self, Eing):
         return super().__init__(Eing, 1)
+        
 
     def execute(self):
         # Calculation of the output based on the inputs
@@ -173,6 +177,7 @@ class NorGate(LogFunc):
     # Class calculates the NOr Gate
     def __init__(self, Eing):
         return super().__init__(Eing, 1)
+        
 
     def execute(self):
         # Calculation of the output based on the inputs
@@ -186,6 +191,7 @@ class NotGate(LogFunc):
     # Class calculates the Not Gate
     def __init__(self, Eing):
         return super().__init__(Eing, Eing)
+        
 
     def execute(self):
         # Calculation of the output based on the inputs
@@ -203,6 +209,7 @@ class HalfAdder(LogFunc):
         self.__andgate = AndGate(2)
         self.__xorgate = XORGate(2)
         return super().__init__(2, 2)
+        
     
     def execute(self):
        # Calculation of the output based on the inputs
@@ -223,6 +230,7 @@ class Fulladder(LogFunc):
         self.__halfadder1 = HalfAdder()
         self.__orgate = OrGate(2)
         return super().__init__(3, 2)
+        
 
     def execute(self):
         # Calculation of the output based on the inputs
@@ -278,5 +286,4 @@ class eightbitadder(LogFunc):
             x = x + 1
         self._set_output(x,v2)
         v=0
-
 
