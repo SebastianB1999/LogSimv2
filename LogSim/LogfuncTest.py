@@ -4,9 +4,11 @@ from Logfunc import OrGate
 from Logfunc import NandGate
 from Logfunc import XORGate
 from Logfunc import NorGate
+from Logfunc import NotGate
 from Logfunc import HalfAdder
 from Logfunc import Fulladder
 from Logfunc import eightbitadder
+
 
 
 class AndGateTest(unittest.TestCase):
@@ -409,6 +411,64 @@ class NorGateTest(unittest.TestCase):
         a.execute()
         self.assertEqual(False, a.Output[0], "Class OrGate Testcase 9 failed.")
 
+class NotGateTest(unittest.TestCase):
+        
+    def testcase_00(self):        
+        a = NotGate(1)
+        self.assertEqual(False, a.Input[0], "Class NotGate Testcase 0 failed.")
+        self.assertEqual(True, a.Output[0], "Class NotGate Testcase 0 failed.")
+
+    def testcase_01(self):
+        a = NotGate(1)
+        a.set_input(0, False)
+        a.execute()
+        self.assertEqual(True, a.Output[0], "Class NotGate Testcase 1 failed.")
+
+    def testcase_02(self):
+        a = NotGate(1)
+        a.set_input(0, True)
+        a.execute()
+        self.assertEqual(False, a.Output[0], "Class NotGate Testcase 2 failed.")
+
+    def testcase_03(self):
+        a = NotGate(2)
+        self.assertEqual(False, a.Input[0], "Class NotGate Testcase 3 failed.")
+        self.assertEqual(False, a.Input[1], "Class NotGate Testcase 3 failed.")
+        self.assertEqual(True, a.Output[0], "Class NotGate Testcase 3 failed.")
+        self.assertEqual(True, a.Output[1], "Class NotGate Testcase 3 failed.")
+        
+    def testcase_04(self):
+        a = NotGate(2)
+        a.set_input(0, False)
+        a.set_input(1, False)
+        a.execute()
+        self.assertEqual(True, a.Output[0], "Class NotGate Testcase 4 failed.")
+        self.assertEqual(True, a.Output[1], "Class NotGate Testcase 4 failed.")
+
+    def testcase_05(self):
+        a = NotGate(2)
+        a.set_input(0, True)
+        a.set_input(1, False)
+        a.execute()
+        self.assertEqual(False, a.Output[0], "Class NotGate Testcase 5 failed.")
+        self.assertEqual(True, a.Output[1], "Class NotGate Testcase 5 failed.")
+
+    def testcase_06(self):
+        a = NotGate(2)
+        a.set_input(0, False)
+        a.set_input(1, True)
+        a.execute()
+        self.assertEqual(True, a.Output[0], "Class NotGate Testcase 6 failed.")
+        self.assertEqual(False, a.Output[1], "Class NotGate Testcase 6 failed.")
+
+    def testcase_07(self):
+        a = NotGate(2)
+        a.set_input(0, True)
+        a.set_input(1, True)
+        a.execute()
+        self.assertEqual(False, a.Output[0], "Class NotGate Testcase 7 failed.")
+        self.assertEqual(False, a.Output[1], "Class NotGate Testcase 7 failed.")
+
 class HalfAdderTest(unittest.TestCase):
     
     def testcase_00(self):
@@ -536,6 +596,36 @@ class FullAdderTest(unittest.TestCase):
         self.assertEqual(True, a.Output[1], "Class FullAdder Testcase 8 failed.")
 
 class eightbitadderTest(unittest.TestCase):
+    
+    def testcase_00(self):
+        a = eightbitadder()
+        self.assertEqual(False, a.Input[0][0], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Input[0][1], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Input[0][2], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Input[0][3], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Input[0][4], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Input[0][5], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Input[0][6], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Input[0][7], "Class eightbitadder Testcase 0 failed.")
+
+        self.assertEqual(False, a.Input[1][0], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Input[1][1], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Input[1][2], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Input[1][3], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Input[1][4], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Input[1][5], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Input[1][6], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Input[1][7], "Class eightbitadder Testcase 0 failed.")
+
+        self.assertEqual(False, a.Output[0], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Output[1], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Output[2], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Output[3], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Output[4], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Output[5], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Output[6], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Output[7], "Class eightbitadder Testcase 0 failed.")
+        self.assertEqual(False, a.Output[8], "Class eightbitadder Testcase 0 failed.")
     
     def testcase_01(self): 
         a = eightbitadder()

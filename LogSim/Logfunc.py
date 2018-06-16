@@ -182,6 +182,21 @@ class NorGate(LogFunc):
                 self._set_output(0,False)
             
 
+class NotGate(LogFunc):
+    # Class calculates the Not Gate
+    def __init__(self, Eing):
+        return super().__init__(Eing, Eing)
+
+    def execute(self):
+        # Calculation of the output based on the inputs
+        v1 = 0
+        for i in self.Input:
+            if i == True:
+                self._set_output(v1, False)
+            else:
+                self._set_output(v1, True)
+            v1 = v1 +1
+
 class HalfAdder(LogFunc):
     # Class calculates the HalfAdder
     def __init__(self):
