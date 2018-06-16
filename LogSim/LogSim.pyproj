@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>98ce689f-4cbd-48b4-b500-940a4b93a065</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>LogfuncTest.py</StartupFile>
+    <StartupFile>Logfunc.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>

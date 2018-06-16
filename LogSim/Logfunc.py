@@ -1,13 +1,13 @@
 from abc import ABC, abstractmethod
 import copy
-#   from copy import deepcopy
+
 __version__ = '3.0'
 __author__ = 'Sebastian Bensing (sebastian.bensing@students.tbs1.de)'
 
 
 class LogFunc(ABC):
     """
-    This class calculates the logical AND function.
+    abstract base class for the logical functions
     """
     def __init__(self,Eingänge,Ausgänge,bits=None):
         self.__Output = []
@@ -31,72 +31,59 @@ class LogFunc(ABC):
         
 
     def __get_anzahl(self):
+        # return the number of inputs
         return self.__Anzahl
 
     def __get_input(self):
+        # return the list Input
         return self.__Input
 
 
     def __get_output(self):
+        # return the list Output
         return self.__Output
 
     def __get_name(self):
+        # return the string name
         return self.__Name
 
 
 
     def set_input(self,position ,value):
-        """
-        Sets the value of the second input signal
-        :param value: (bool) new value
-        :return: None
-        """
+        #Sets the value of the Input at a specified position
+        
         isinstance(value, bool)
         isinstance(position,int)
         if position >= 0:
             self.__Input[position] = value
 
     def _set_output(self,position, value):
-        """
-        Sets the value of the output signal
-        :param value: (bool) new value
-        :return: None
-        """
+        # Sets the value of Output at a specified position
         isinstance(value, bool)
         isinstance(position,int)
         if position >= 0:
             self.__Output[position] = value
 
     def __set_name(self, value):
-        """
-        Sets the value of the name property
-        :param value: (string) new value
-        :return: None
-        """
+        # Sets the value of Name
         isinstance(value, str)
         self.__Name = value
 
+    # Properties
     Name = property(__get_name, __set_name)
     Output = property(__get_output, None)
     Anzahl = property(__get_anzahl,None)
     Input = property(__get_input,set_input)
 
     def __str__(self):
-        """
-        Converts the status of the object to a string. The function will be called
-        implicitly when you try to convert the object in a string.
-        :return: Printable string of the status.
-        """
+        # Converts the status of the object to a string.
         status = type(self).__name__ + "." + self.Name + ": "
-        status += "(" + str(self.Input0) + "," + str(self.Input1) + ") "
+        status += "(" + str(self.Input)+") "
         status += "-> (" + str(self.Output) + ")"
         return status
 
     def show(self):
-        """
-        Shows the value of each property of the class and the class name.
-        :return: None
-        """
+        # Shows the value of each property of the class and the class name.
         cwidth = 50
         first_last = ''.ljust(cwidth, '-')
         format_string = "-- {{0:10}}: {{1:{0}}} --".format(cwidth - 18)
@@ -104,27 +91,25 @@ class LogFunc(ABC):
         print(first_last)
         print(format_string.format("Name", self.Name))
         print(format_string.format("Type", type(self).__name__))
-        print(format_string.format("Input0", str(self.Input0)))
-        print(format_string.format("Input1", str(self.Input1)))
+        print(format_string.format("Input0", str(self.Input)))
         print(format_string.format("Output", str(self.Output)))
         print(first_last)
 
     @abstractmethod
     def execute(self):
+        # Abstract method for calculate Output of the logical function
         raise NotImplementedError
         #pass
 
 
 
 class OrGate(LogFunc):
+    # Class calculates the Or Gate
     def __init__(self, Eing):
         return super().__init__(Eing, 1)
 
     def execute(self):
-        """
-        Computes the result of the logical connection of the two inputs.
-        :return: None
-        """
+    # Calculation of the output based on the inputs
         self._set_output(0,False)
         for i in self.Input:
             if i == True:
@@ -132,14 +117,12 @@ class OrGate(LogFunc):
             
 
 class AndGate(LogFunc):
+    # Class calculates the And Gate
     def __init__(self, Eing):
         return super().__init__(Eing, 1)
 
     def execute(self):
-        """
-        Computes the result of the logical connection of the two inputs.
-        :return: None
-        """
+        # Calculation of the output based on the inputs
         self._set_output(0,False)
         x = True
         for i in self.Input:
@@ -151,10 +134,12 @@ class AndGate(LogFunc):
         
 
 class XORGate(LogFunc):
+    # Class calculates the XOr Gate
     def __init__(self, Eing):
         return super().__init__(Eing, 1)
 
-    def execute(self):# wenn eine ungrade anzahl an true gibt ist das ergebnis true
+    def execute(self):
+        # Calculation of the output based on the inputs
         y = 0
         self._set_output(0,False)
         for i in self.Input:
@@ -168,10 +153,12 @@ class XORGate(LogFunc):
 
 
 class NandGate(LogFunc):
+    # Class calculates the NAnd Gate
     def __init__(self, Eing):
         return super().__init__(Eing, 1)
 
     def execute(self):
+        # Calculation of the output based on the inputs
         x = True
         for i in self.Input:
             if i == False:
@@ -181,17 +168,14 @@ class NandGate(LogFunc):
         else:
             self._set_output(0,True)
 
-# Nor muss noch implementiert werden
 
 class NorGate(LogFunc):
+    # Class calculates the NOr Gate
     def __init__(self, Eing):
         return super().__init__(Eing, 1)
 
     def execute(self):
-        """
-        Computes the result of the logical connection of the two inputs.
-        :return: None
-        """
+        # Calculation of the output based on the inputs
         self._set_output(0,True)
         for i in self.Input:
             if i == True:
@@ -199,13 +183,14 @@ class NorGate(LogFunc):
             
 
 class HalfAdder(LogFunc):
+    # Class calculates the HalfAdder
     def __init__(self):
         self.__andgate = AndGate(2)
         self.__xorgate = XORGate(2)
         return super().__init__(2, 2)
     
     def execute(self):
-       
+       # Calculation of the output based on the inputs
        self.__andgate.set_input(0,self.Input[0])
        self.__andgate.set_input(1,self.Input[1])
        self.__andgate.execute()
@@ -218,14 +203,14 @@ class HalfAdder(LogFunc):
        self._set_output(0,self.__xorgate.Output[0])
        
 class Fulladder(LogFunc):
+    # Class calculates the FullAdder
     def __init__(self):
         self.__halfadder1 = HalfAdder()
-        #self.__halfadder2 = HalfAdder()
         self.__orgate = OrGate(2)
         return super().__init__(3, 2)
 
     def execute(self):
-        
+        # Calculation of the output based on the inputs
         self.__halfadder1.set_input(0,self.Input[0])
         self.__halfadder1.set_input(1,self.Input[1])
         self.__halfadder1.execute()
@@ -247,6 +232,7 @@ class Fulladder(LogFunc):
         self._set_output(1,v5)
 
 class eightbitadder(LogFunc):
+    # class calculates the result of two 8-bit numbers
     def __init__(self):
         self.__halfadder = HalfAdder()
         self.__fulladder = Fulladder()
@@ -258,8 +244,7 @@ class eightbitadder(LogFunc):
     #    return super().__init__(2,bits, bits+1)
 
     def execute(self):
-        
-        
+        # Calculation of the output based on the inputs
         self.__halfadder.set_input(0,self.Input[0][0])
         self.__halfadder.set_input(1,self.Input[1][0])
         self.__halfadder.execute()
@@ -279,4 +264,4 @@ class eightbitadder(LogFunc):
         self._set_output(x,v2)
         v=0
 
- 
+
