@@ -83,4 +83,22 @@ class Show_decimal(ShowType):
         print(format_string.format("Output", str(self._to_decimal(Logfunc.Output))))
         print(first_last)
 
+class Show_picture(ShowType):
+    def show(self, Logfunc):
+        cwidth = 50
+        first_last = ''.ljust(cwidth, '-')
+        format_string = "-- {{0:10}}: {{1:{0}}} --".format(cwidth - 18)
+
+        print(first_last)
+        print(format_string.format("Name", str(Logfunc.Name)))
+        for i in range(len(Logfunc.Input)):
+            print(format_string.format("Input "+str(i)+"", str(self._to_decimal(Logfunc.Input[i]))))
+
+        print(format_string.format("Output", str(self._to_decimal(Logfunc.Output))))
+        print(first_last)
+        Logfunc.picture()
+        print("\n\n\n")
+
+
+        
 

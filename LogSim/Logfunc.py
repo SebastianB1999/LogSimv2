@@ -94,10 +94,17 @@ class LogFunc(ABC):
     def show(self):
         self.__get_showtyp().show(self)
 
+    def picture(self):
+        # Abstract method for calculate Output of the logical function
+        print()
+
     @abstractmethod
     def execute(self):
         # Abstract method for calculate Output of the logical function
         raise NotImplementedError
+
+
+   
         #pass
 
 
@@ -114,6 +121,9 @@ class OrGate(LogFunc):
         for i in self.Input:
             if i == True:
                 self._set_output(0,True)
+
+    def picture(self):
+        print("                                    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                 ")
             
 
 class AndGate(LogFunc):
@@ -131,6 +141,9 @@ class AndGate(LogFunc):
                 x = False
         if x == True:
             self._set_output(0,True)
+
+    def picture(self):
+        print("                                    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                 ")
 
         
 
@@ -152,6 +165,8 @@ class XORGate(LogFunc):
         if y%2 ==1:
             self._set_output(0,True)
 
+    def picture(self):
+        print("                                    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                 ")
 
 
 class NandGate(LogFunc):
@@ -171,6 +186,9 @@ class NandGate(LogFunc):
         else:
             self._set_output(0,True)
 
+    def picture(self):
+        print("                                    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                 ")
+
 
 class NorGate(LogFunc):
     # Class calculates the NOr Gate
@@ -184,6 +202,9 @@ class NorGate(LogFunc):
         for i in self.Input:
             if i == True:
                 self._set_output(0,False)
+
+    def picture(self):
+        print("                                    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                 ")
             
 
 class NotGate(LogFunc):
@@ -202,6 +223,9 @@ class NotGate(LogFunc):
                 self._set_output(v1, True)
             v1 = v1 +1
 
+    def picture(self):
+        print("                                    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                 ")
+
 class HalfAdder(LogFunc):
     # Class calculates the HalfAdder
     def __init__(self):
@@ -212,16 +236,19 @@ class HalfAdder(LogFunc):
     
     def execute(self):
        # Calculation of the output based on the inputs
-       self.__andgate.set_input(0,self.Input[0])
-       self.__andgate.set_input(1,self.Input[1])
-       self.__andgate.execute()
-       self._set_output(1,self.__andgate.Output[0])
+        self.__andgate.set_input(0,self.Input[0])
+        self.__andgate.set_input(1,self.Input[1])
+        self.__andgate.execute()
+        self._set_output(1,self.__andgate.Output[0])
        
        
-       self.__xorgate.set_input(0,self.Input[0])
-       self.__xorgate.set_input(1,self.Input[1])
-       self.__xorgate.execute()
-       self._set_output(0,self.__xorgate.Output[0])
+        self.__xorgate.set_input(0,self.Input[0])
+        self.__xorgate.set_input(1,self.Input[1])
+        self.__xorgate.execute()
+        self._set_output(0,self.__xorgate.Output[0])
+    
+    def picture(self):
+        print("                                    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                 ")
        
 class Fulladder(LogFunc):
     # Class calculates the FullAdder
@@ -252,6 +279,17 @@ class Fulladder(LogFunc):
         self.__orgate.execute()
         v5 = self.__orgate.Output[0]
         self._set_output(1,v5)
+
+    def picture(self):
+        print("                            ▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                 ")
+        print("                            █            █                                 ")
+        print("    Input1 = "+str(self.Input[0])+"  ■■■■■■■■█            █■■■■■■■■  "+str(self.Output[0])+"                       ")
+        print("                            █            █                                 ")
+        print("    Input2 = "+str(self.Input[1])+"  ■■■■■■■■█     VA     █■■■■■■■■  "+str(self.Output[0])+"                       ")
+        print("                            █            █                                 ")
+        print("  Übertrag = "+str(self.Input[2])+"  ■■■■■■■■█            █■■■■■■■■  "+str(self.Output[0])+"                       ")
+        print("                            █            █                                 ")
+        print("                            ▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                 ")
 
 class eightbitadder(LogFunc):
     # class calculates the result of two 8-bit numbers
@@ -286,6 +324,10 @@ class eightbitadder(LogFunc):
         self._set_output(x,v2)
         v=0
 
-a = eightbitadder()
-a.Showtype = Show_decimal()
+    def picture(self):
+        print("                                    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                 ")
+
+
+a = Fulladder()
+a.Showtype = Show_picture()
 a.show()
