@@ -100,5 +100,50 @@ class Show_picture(ShowType):
         print("\n\n\n")
 
 
-        
+
+"""
+# Volladdierer
+print("                                    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                 ")
+print("                                    █            █                                 ")
+print("                            ■■■■■■■■█            █■■■■■■■■                         ")
+print("                                    █            █                                 ")
+print("                            ■■■■■■■■█            █■■■■■■■■                         ")
+print("                                    █            █                                 ")
+print("                            ■■■■■■■■█            █■■■■■■■■                         ")
+print("                                    █            █                                 ")
+print("                                    ▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                 ")
+
+# Halbaddierer
+print("                                    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                 ")
+print("                                    █            █                                 ")
+print("                            ■■■■■■■■█            █■■■■■■■■                         ")
+print("                                    █            █                                 ")
+print("                                    █            █■■■■■■■■                         ")
+print("                                    █            █                                 ")
+print("                            ■■■■■■■■█            █■■■■■■■■                         ")
+print("                                    █            █                                 ")
+print("                                    ▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                 ")
+
+#Gatter
+
+print("                                    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                 ")
+print("                                    █            █                                 ")
+print("                            ■■■■■■■■█            █■■■■■■■■                         ")
+print("                                    █            █                                 ")
+print("                            ■■■■■■■■█            █■■■■■■■■                         ")
+print("                                    █            █                                 ")
+print("                                    ▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                 ")
+
+
+#Addierer
+
+print("                                    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                 ")
+print("                                    █            █                                 ")
+print("                            ■■■■■■■■█            █                                 ")
+print("                                    █            █■■■■■■■■                         ")
+print("                            ■■■■■■■■█            █                                 ")
+print("                                    █            █                                 ")
+print("                                    ▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                 ")
+
+        """
 
