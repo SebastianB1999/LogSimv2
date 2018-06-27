@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from LogfuncShow import *
 import copy
 
 __version__ = '3.0'
@@ -15,6 +16,7 @@ class LogFunc(ABC):
         self.__Anzahl = Eingänge
         self.__Ausgänge = Ausgänge
         self.__Input = []
+        self.__ShowTyp = ShowGate()
         if bits is None:
             for i in range(Eingänge):
                 self.__Input.append(False)
@@ -69,13 +71,20 @@ class LogFunc(ABC):
         isinstance(value, str)
         self.__Name = value
 
-    # Properties
+    def __set_showtyp(self,Logfunc):
+        self.__ShowTyp = Logfunc
+    
+    def __get_showtyp(self):
+        return self.__ShowTyp
+
+    # Properties    
     Name = property(__get_name, __set_name)
     Output = property(__get_output, None)
     Anzahl = property(__get_anzahl,None)
     Input = property(__get_input,set_input)
+    Showtype = property(__get_showtyp,__set_showtyp)
 
-    def __str__(self):
+    def __str__(self):  
         # Converts the status of the object to a string.
         status = type(self).__name__ + "." + self.Name + ": "
         status += "(" + str(self.Input)+") "
@@ -83,17 +92,7 @@ class LogFunc(ABC):
         return status
 
     def show(self):
-        # Shows the value of each property of the class and the class name.
-        cwidth = 50
-        first_last = ''.ljust(cwidth, '-')
-        format_string = "-- {{0:10}}: {{1:{0}}} --".format(cwidth - 18)
-
-        print(first_last)
-        print(format_string.format("Name", self.Name))
-        print(format_string.format("Type", type(self).__name__))
-        print(format_string.format("Input0", str(self.Input)))
-        print(format_string.format("Output", str(self.Output)))
-        print(first_last)
+        self.__get_showtyp().show(self)
 
     @abstractmethod
     def execute(self):
@@ -287,3 +286,6 @@ class eightbitadder(LogFunc):
         self._set_output(x,v2)
         v=0
 
+a = eightbitadder()
+a.Showtype = Show_eightbitadder()
+a.show()
