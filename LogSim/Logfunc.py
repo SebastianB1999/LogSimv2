@@ -287,5 +287,5 @@ class eightbitadder(LogFunc):
         v=0
 
 a = eightbitadder()
-a.Showtype = Show_eightbitadder()
+a.Showtype = Show_decimal()
 a.show()
