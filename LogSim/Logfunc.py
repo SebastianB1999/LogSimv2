@@ -12,11 +12,13 @@ class LogFunc(ABC):
     """
     def __init__(self,Eingänge,Ausgänge,bits=None):
         self.__Output = []
+        self.__Output_binear = []
         self.__Name = type(self).__name__
         self.__Anzahl = Eingänge
         self.__Ausgänge = Ausgänge
         self.__Input = []
         self.__ShowTyp = ShowGate()
+        
         if bits is None:
             for i in range(Eingänge):
                 self.__Input.append(False)
@@ -77,9 +79,18 @@ class LogFunc(ABC):
     def __get_showtyp(self):
         return self.__ShowTyp
 
+    def _set_output_binear(self, value):
+        # Sets the value of Output at a specified position
+        self.__Output_binear = value
+
+    def __get_output_binear(self):
+        # return the list Output
+        return self.__Output_binear
+
     # Properties    
     Name = property(__get_name, __set_name)
     Output = property(__get_output, None)
+    Output_binear = property(__get_output_binear, None)
     Anzahl = property(__get_anzahl,None)
     Input = property(__get_input,set_input)
     Showtype = property(__get_showtyp,__set_showtyp)
@@ -106,7 +117,6 @@ class LogFunc(ABC):
 
    
         #pass
-
 
 
 class OrGate(LogFunc):

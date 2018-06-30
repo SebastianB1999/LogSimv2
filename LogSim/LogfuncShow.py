@@ -10,7 +10,7 @@ class ShowType(ABC):
     def show(self,Logfunc):
         pass
 
-    def _boolToBinary(self, bool_values):
+    def _boolToBinary(self, bool_values, Logfunc):
         v1 = []
         if type(bool_values) is list:
             v1 = bool_values
@@ -23,15 +23,16 @@ class ShowType(ABC):
             else: 
                 v1[i] = "0" 
         v1 = v1[:-1]
+        Logfunc.Output_binear = v1
         return v1 
 
-    def _to_decimal(self,values):
+    def _to_decimal(self,values, Logfunc):
         if type(values) is list:
             if values[0] == True or values[0] == False:
-                values = self._boolToBinary(values)
+                values = self._boolToBinary(values,Logfunc)
         else:
             if values == True or values == False:
-                values = self._boolToBinary(values)
+                values = self._boolToBinary(values, Logfunc)
         values2=0
         for i in range(len(values)):
             values2 = values2 + int(values[i])*(2**i)
@@ -62,10 +63,10 @@ class Show_binear(ShowType):
 
 
         for i in range(len(Logfunc.Input)):
-            print(format_string.format("Eingabe "+str(i)+"", str(self._boolToBinary(Logfunc.Input[i])).replace("'","")))
+            print(format_string.format("Eingabe "+str(i)+"", str(self._boolToBinary(Logfunc.Input[i],Logfunc)).replace("'","")))
         
         
-        print(format_string.format("Output ", str(self._boolToBinary(Logfunc.Output)).replace("'","")))
+        print(format_string.format("Output ", str(self._boolToBinary(Logfunc.Output, Logfunc)).replace("'","")))
 
         print(first_last)
 
@@ -78,9 +79,9 @@ class Show_decimal(ShowType):
         print(first_last)
         print(format_string.format("Name", str(Logfunc.Name)))
         for i in range(len(Logfunc.Input)):
-            print(format_string.format("Input "+str(i)+"", str(self._to_decimal(Logfunc.Input[i]))))
+            print(format_string.format("Input "+str(i)+"", str(self._to_decimal(Logfunc.Input[i],Logfunc))))
         
-        print(format_string.format("Output", str(self._to_decimal(Logfunc.Output))))
+        print(format_string.format("Output", str(self._to_decimal(Logfunc.Output, Logfunc))))
         print(first_last)
 
 class Show_picture(ShowType):
@@ -92,9 +93,9 @@ class Show_picture(ShowType):
         print(first_last)
         print(format_string.format("Name", str(Logfunc.Name)))
         for i in range(len(Logfunc.Input)):
-            print(format_string.format("Input "+str(i)+"", str(self._to_decimal(Logfunc.Input[i]))))
+            print(format_string.format("Input "+str(i)+"", str(self._to_decimal(Logfunc.Input[i], Logfunc))))
 
-        print(format_string.format("Output", str(self._to_decimal(Logfunc.Output))))
+        print(format_string.format("Output", str(self._to_decimal(Logfunc.Output, Logfunc))))
         print(first_last)
         Logfunc.picture()
         print("\n\n\n")
